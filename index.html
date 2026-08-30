@@ -247,25 +247,23 @@
   .face::after{ right:-1px; }
   .face-front{
     background:linear-gradient(155deg, #1e1e1e, #0f0f0f);
-  }
-  .face-front .ticket-inner{
-    position:absolute; inset:16px;
-    border:1px dashed rgba(245,148,31,0.3);
-    border-radius:8px;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:12px;
+    overflow:hidden;
   }
   .face-front .ticket-art{
-    width:55%;
-    height:auto;
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
     display:block;
   }
   .face-front .tap-txt{
     position:absolute;
-    bottom:16px;
-    left:16px; right:16px;
+    bottom:0; left:0; right:0;
+    padding:22px 16px 16px;
+    background:linear-gradient(0deg, rgba(0,0,0,0.85), transparent);
     text-align:center;
-    color:var(--text-dim);
+    color:var(--text);
     font-size:13px;
     letter-spacing:0.04em;
   }
@@ -415,9 +413,7 @@
         <div class="card-zone">
           <div class="card" id="card">
             <div class="face face-front">
-              <div class="ticket-inner">
-                <img src="./images/drawing_lots_card.png" alt="" class="ticket-art">
-              </div>
+              <img src="./images/drawing_lots_card.png" alt="" class="ticket-art">
               <div class="tap-txt">이름 입력 후 탭하여 뽑기</div>
             </div>
             <div class="face face-back">
