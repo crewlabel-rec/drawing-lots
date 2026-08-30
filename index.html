@@ -31,23 +31,20 @@
     font-display:swap;
   }
   :root{
-    --navy-deep:#070c16;
-    --navy:#0d1526;
-    --navy-panel:#141f38;
-    --navy-line:#253150;
-    --gold:#d4af6a;
-    --gold-bright:#f2cf8a;
-    --ember:#ff6b35;
-    --text:#eef1f7;
-    --text-dim:#8d97ad;
+    --navy-deep:#000000;
+    --navy:#0a0a0a;
+    --navy-panel:#1a1a1a;
+    --navy-line:#2e2e2e;
+    --gold:#f5941f;
+    --gold-bright:#ffab4d;
+    --ember:#f5941f;
+    --text:#f2f2f2;
+    --text-dim:#8a8a8a;
   }
   *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
   html,body{
     margin:0; padding:0; height:100%;
-    background:
-      radial-gradient(ellipse at 20% -10%, rgba(212,175,106,0.10), transparent 45%),
-      radial-gradient(ellipse at 100% 110%, rgba(255,107,53,0.08), transparent 50%),
-      var(--navy-deep);
+    background:var(--navy-deep);
     color:var(--text);
     font-family:'GmarketSans', sans-serif;
     font-weight:500;
@@ -62,16 +59,12 @@
     justify-content:center;
     padding:24px;
   }
-  .brand{
-    position:fixed;
-    top:22px; left:50%; transform:translateX(-50%);
-    display:flex; align-items:center; gap:10px;
-    color:var(--text-dim);
-    font-size:13px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
+  .logo-img{
+    height:34px;
+    width:auto;
+    display:block;
+    margin:0 auto;
   }
-  .brand .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);}
 
   /* ---------- SETUP SCREEN ---------- */
   .setup{
@@ -117,7 +110,7 @@
     width:56px; height:56px;
     border-radius:16px;
     border:1px solid var(--navy-line);
-    background:#0f1830;
+    background:#141414;
     color:var(--gold-bright);
     font-size:26px;
     font-weight:700;
@@ -125,7 +118,7 @@
     cursor:pointer;
     transition:transform .12s ease, background .12s ease;
   }
-  .count-btn:active{transform:scale(0.92); background:#182444;}
+  .count-btn:active{transform:scale(0.92); background:#242424;}
   .count-value{
     font-family:'GmarketSans', sans-serif;
     font-weight:700;
@@ -198,35 +191,71 @@
   }
   .face{
     position:absolute; inset:0;
-    border-radius:28px;
+    border-radius:16px;
     display:flex; align-items:center; justify-content:center;
     backface-visibility:hidden;
-    border:1px solid var(--navy-line);
+    border:1px solid rgba(245,148,31,0.35);
+    box-shadow:0 20px 50px rgba(0,0,0,0.5);
   }
+  .face::before, .face::after{
+    content:'';
+    position:absolute;
+    top:50%; width:14px; height:14px;
+    background:var(--navy-deep);
+    border-radius:50%;
+    transform:translateY(-50%);
+  }
+  .face::before{ left:-1px; }
+  .face::after{ right:-1px; }
   .face-front{
-    background:
-      repeating-linear-gradient(135deg, rgba(212,175,106,0.06) 0 2px, transparent 2px 26px),
-      linear-gradient(155deg, #16213e, #0c1424);
-    flex-direction:column; gap:14px;
+    background:linear-gradient(155deg, #1e1e1e, #0f0f0f);
+  }
+  .face-front .ticket-inner{
+    position:absolute; inset:20px;
+    border:1px dashed rgba(245,148,31,0.3);
+    border-radius:8px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:12px;
   }
   .face-front .mark{
-    width:64px; height:64px;
-    border-radius:50%;
-    border:2px solid var(--gold);
-    color:var(--gold-bright);
-    font-size:30px; font-weight:700;
+    width:44px; height:44px;
+    border-radius:12px;
+    background:linear-gradient(155deg, #262626, #141414);
+    border:1px solid rgba(245,148,31,0.5);
     display:flex; align-items:center; justify-content:center;
-    font-family:'GmarketSans', sans-serif;
   }
-  .face-front .tap-txt{
+  .face-front .mark .box{
+    width:20px; height:20px;
+    border:2px solid var(--gold);
+    border-radius:5px 5px 5px 0;
+  }
+  .face-front .divider{
+    width:36px; height:1px;
+    background:rgba(245,148,31,0.4);
+  }
+  .face-front .ticket-label{
     color:var(--text-dim);
-    font-size:14px;
+    font-size:13px;
     letter-spacing:0.1em;
   }
+  .face-front .tap-txt{
+    position:absolute;
+    bottom:20px;
+    color:var(--text-dim);
+    font-size:13px;
+    letter-spacing:0.06em;
+  }
   .face-back{
-    background:linear-gradient(155deg, #23305a, #0f1830);
+    background:linear-gradient(155deg, #262626, #141414);
     transform:rotateY(180deg);
     flex-direction:column;
+    gap:6px;
+  }
+  .face-back .ticket-inner{
+    position:absolute; inset:20px;
+    border:1px dashed rgba(245,148,31,0.3);
+    border-radius:8px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
     gap:6px;
   }
   .face-back .num-label{
@@ -243,10 +272,9 @@
   .face-back .num{
     font-family:'GmarketSans', sans-serif;
     font-weight:700;
-    font-size:120px;
+    font-size:100px;
     line-height:1;
     color:var(--text);
-    text-shadow:0 6px 24px rgba(255,107,53,0.35);
   }
 
   .drawn-list{
@@ -294,7 +322,7 @@
     padding:16px 18px;
     border-radius:14px;
     border:1px solid var(--navy-line);
-    background:#0f1830;
+    background:#141414;
     color:var(--text);
     font-family:'GmarketSans', sans-serif;
     font-size:18px;
@@ -323,11 +351,10 @@
 </head>
 <body>
 
-<div class="brand"><span class="dot"></span> CREW LABEL <span class="dot"></span></div>
-
 <div class="stage">
 
   <div class="setup" id="setupScreen">
+    <img class="logo-img" src="./images/crew%20label%20logo%20white%20text.png.png" alt="Crew Label">
     <h1>제비뽑기</h1>
     <p class="sub">발표 순서를 정해볼게요</p>
 
@@ -345,22 +372,29 @@
   </div>
 
   <div class="draw" id="drawScreen">
+    <img class="logo-img" src="./images/crew%20label%20logo%20white%20text.png.png" alt="Crew Label">
     <div class="progress">남은 번호 <b id="remainCount">7</b> / <span id="totalCount">7</span></div>
 
     <div class="name-field" id="nameField">
       <label>뽑는 사람 이름을 입력해주세요</label>
-      <input type="text" id="nameInput" placeholder="예: 김민철" maxlength="12">
+      <input type="text" id="nameInput" placeholder="예: 홍길동" maxlength="12">
     </div>
 
     <div class="card-zone">
       <div class="card" id="card">
         <div class="face face-front">
-          <div class="mark">?</div>
-          <div class="tap-txt">이름 입력 후 눌러서 뽑기</div>
+          <div class="ticket-inner">
+            <div class="mark"><div class="box"></div></div>
+            <div class="divider"></div>
+            <div class="ticket-label">TICKET NO.</div>
+          </div>
+          <div class="tap-txt">이름 입력 후 탭하여 뽑기</div>
         </div>
         <div class="face face-back">
-          <div class="num-label" id="resultName">이름</div>
-          <div class="num" id="resultNum">1</div>
+          <div class="ticket-inner">
+            <div class="num-label" id="resultName">이름</div>
+            <div class="num" id="resultNum">1</div>
+          </div>
         </div>
       </div>
     </div>
